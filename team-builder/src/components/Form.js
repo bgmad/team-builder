@@ -9,21 +9,29 @@ const formValues = {
 export default function Form({ members, setMembersList}) {
     const submitForm = e => {
         e.preventDefault();
-        setMembersList([...members, formValues]);
-
+        if(formValues.name !== '') {
+            setMembersList([...members, formValues]);
+            setTimeout(() => {
+                for(let key in formValues) {
+                    document.getElementById(`${key}-input`).value = '';
+                    formValues[`${key}`] = '';
+                }
+            }, 50);
+        } else {
+            return null;
+        }
     }
 
-    const change = e => 
-        formValues[`${e.target.name}`] = e.target.value;
+    const change = e => formValues[`${e.target.name}`] = e.target.value;
 
     return (
         <div>
             <form>
-                <input name='name' type='text' onChange={change}>
+                <input id='name-input' name='name' type='text' placeholder='Name' onChange={change}>
                 </input>
-                <input name='email' type='email' onChange={change}>
+                <input id='email-input' name='email' type='email' placeholder='Email' onChange={change}>
                 </input>
-                <input name='role' type='text' onChange={change}>
+                <input id='role-input' name='role' type='text' placeholder='Role' onChange={change}>
                 </input>
                 <button onClick={submitForm}>Submit</button>
             </form>

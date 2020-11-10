@@ -19,10 +19,7 @@ const renderMembers = (membersList) => {
 function App() {
 
   const [membersList, setMembersList] = useState(members);
-
-  const addMember = () => setMembersList([...membersList, {name: 'Steve', email: 'Steve.Harvey@gmail.com', role: 'sex Machine'}]);
-
-  console.log(membersList);
+  
   return (
     <div>
       <Form members={membersList} setMembersList={setMembersList}>
