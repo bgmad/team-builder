@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Form from './components/Form';
 
-const members = [
-]
+const members = []
 
 const renderMembers = (membersList) => {
   return membersList.map(member => {
@@ -19,7 +18,7 @@ const renderMembers = (membersList) => {
 function App() {
 
   const [membersList, setMembersList] = useState(members);
-  
+
   return (
     <div>
       <Form members={membersList} setMembersList={setMembersList}>

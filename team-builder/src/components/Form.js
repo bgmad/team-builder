@@ -9,7 +9,7 @@ const formValues = {
 export default function Form({ members, setMembersList}) {
     const submitForm = e => {
         e.preventDefault();
-        if(formValues.name !== '') {
+        if(formValues.name !== '' && formValues.email !== '' && formValues.role !== '') {
             setMembersList([...members, formValues]);
             setTimeout(() => {
                 for(let key in formValues) {
