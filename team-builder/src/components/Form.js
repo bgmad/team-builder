@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const formValues = {
     name: '',
@@ -7,22 +7,25 @@ const formValues = {
 }
 
 export default function Form({ members, setMembersList}) {
+
+    const [form, setForm] = useState(formValues);
+
     const submitForm = e => {
         e.preventDefault();
-        if(formValues.name !== '' && formValues.email !== '' && formValues.role !== '') {
-            setMembersList([...members, formValues]);
+        if(form.name !== '' && form.email !== '' && form.role !== '') {
+            setMembersList([...members, form]);
             setTimeout(() => {
-                for(let key in formValues) {
+                for(let key in form) {
                     document.getElementById(`${key}-input`).value = '';
-                    formValues[`${key}`] = '';
+                    setForm({...form, [key]: ''});
                 }
-            }, 50);
+            }, 200);
         } else {
             return null;
         }
     }
 
-    const change = e => formValues[`${e.target.name}`] = e.target.value;
+    const change = e => setForm({...form, [e.target.name]: e.target.value});
 
     return (
         <div>
